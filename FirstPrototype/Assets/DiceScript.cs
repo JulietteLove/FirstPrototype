@@ -12,17 +12,11 @@ public class DiceScript : MonoBehaviour
     {
         ButtonPressed = true;
 
-        CombatSystem combatSystem = GameObject.FindWithTag("CombatSystem").GetComponent<CombatSystem>();
-
-        if (ButtonPressed == true && combatSystem.CanRoll == true)
+        if (ButtonPressed == true)
         {
             NumberRolled = Random.Range(1f, 6f);
             DiceText.GetComponent<UnityEngine.UI.Text>().text = NumberRolled.ToString("F0");
             ButtonPressed = false;
-
-            combatSystem.state = CombatState.PLAYERCOMBAT;
-            combatSystem.CanRoll = false;
-
         }
     }
 }
