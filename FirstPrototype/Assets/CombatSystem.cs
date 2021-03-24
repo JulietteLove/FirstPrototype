@@ -10,6 +10,9 @@ public class CombatSystem : MonoBehaviour
     public bool EnemyCanRoll = false;
     public CombatState state;
 
+    public GameObject LoseUI;
+    public GameObject WinUI;
+
     public GameObject MeleeAttackButton;
     public GameObject FireballAttackButton;
 
@@ -23,6 +26,7 @@ public class CombatSystem : MonoBehaviour
         Player player = GameObject.FindWithTag("Player").GetComponent<Player>();
         Enemy enemy = GameObject.FindWithTag("Enemy").GetComponent<Enemy>();
         DiceScript diceScript = GameObject.FindWithTag("Dice").GetComponent<DiceScript>();
+        AttackScript attackScript = GameObject.FindWithTag("CombatSystem").GetComponent<AttackScript>();
 
         if (state == CombatState.PLAYERROLL)
         {
@@ -46,6 +50,18 @@ public class CombatSystem : MonoBehaviour
             Debug.Log("Enemy is in combat");
             Invoke("EnemyRoll", 2f);
         }
+
+        //if (diceScript.playerHealth.fillAmount == 0f) //Player Loses
+        //{
+        //    Debug.Log("Has Lost");
+        //    LoseUI.SetActive(true);
+        //}
+
+        //if (attackScript.enemyHealth.fillAmount == 0f) //Player Wins
+        //{
+        //    Debug.Log("Has Won");
+        //    WinUI.SetActive(true);
+        //}
     }
 
 
@@ -73,6 +89,12 @@ public class CombatSystem : MonoBehaviour
                 diceScript.playerHealth.fillAmount = player.currentHealth / 1;
                 Invoke("PlayerTurn", 2f);
                 Debug.Log("Enemy has hit");
+
+                if (player.currentHealth < 0.1f || player.currentHealth > 1f) //Player Loses
+                {
+                    Debug.Log("Has Lost");
+                    LoseUI.SetActive(true);
+                }
             }
 
             EnemyCanRoll = false;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DiceScript : MonoBehaviour
 {
@@ -32,12 +33,18 @@ public class DiceScript : MonoBehaviour
             {
                 ConsoleText.text = "Miss";
                 Invoke("EnemyTurn", 2f);
+
+                AttackScript attackScript = GameObject.FindWithTag("CombatSystem").GetComponent<AttackScript>();
+                attackScript.PlayerCanAttack = true;
             }
             
-            if (enemy.defenceNumber < NumberRolled) //Option to deal damage to enemy. ATtack buttons appear. 
+            if (enemy.defenceNumber < NumberRolled) //Option to deal damage to enemy. Attack buttons appear. 
             {
                 combatSystem.state = CombatState.PLAYERCOMBAT;
                 ConsoleText.text = "Your turn";
+
+                AttackScript attackScript = GameObject.FindWithTag("CombatSystem").GetComponent<AttackScript>();
+                attackScript.PlayerCanAttack = true;
             }
             
             combatSystem.CanRoll = false;
@@ -50,5 +57,10 @@ public class DiceScript : MonoBehaviour
         combatSystem.state = CombatState.ENEMYTURN;
         combatSystem.EnemyCanRoll = true;
         ConsoleText.text = "Enemy Turn";
+    }
+
+    public void Replay() //Replay scene button
+    {
+        SceneManager.LoadScene("SampleScene");
     }
 }
