@@ -238,9 +238,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NumberRolled: 0
+  EnemyNumberRolled: 0
   ButtonPressed: 0
   DiceText: {fileID: 1627907020}
+  EnemyDiceText: {fileID: 702161390}
   ConsoleText: {fileID: 2096130395}
+  playerHealth: {fileID: 1395261821}
 --- !u!1 &380849424
 GameObject:
   m_ObjectHideFlags: 0
@@ -778,6 +781,7 @@ RectTransform:
   m_Children:
   - {fileID: 380849425}
   - {fileID: 1627907021}
+  - {fileID: 702161391}
   - {fileID: 1332784208}
   - {fileID: 691485092}
   - {fileID: 1300105748}
@@ -899,7 +903,7 @@ Transform:
   - {fileID: 715398917}
   - {fileID: 1395261820}
   m_Father: {fileID: 530495170}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &691485093
 MonoBehaviour:
@@ -916,8 +920,85 @@ MonoBehaviour:
   playerName: Player
   attackPower: 2
   defenceNumber: 2
-  currentHealth: 10
+  currentHealth: 1
   maxHealth: 10
+--- !u!1 &702161390
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 702161391}
+  - component: {fileID: 702161393}
+  - component: {fileID: 702161392}
+  m_Layer: 5
+  m_Name: EnemyNumberRolledText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &702161391
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 702161390}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.11878141, y: 0.11878141, z: 0.11878141}
+  m_Children: []
+  m_Father: {fileID: 530495170}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 197, y: 108}
+  m_SizeDelta: {x: 485.3, y: 431.9}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &702161392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 702161390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 300
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 3
+    m_MaxSize: 300
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: 
+--- !u!222 &702161393
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 702161390}
+  m_CullTransparentMesh: 0
 --- !u!1 &715398916
 GameObject:
   m_ObjectHideFlags: 0
@@ -1027,7 +1108,7 @@ RectTransform:
   m_Children:
   - {fileID: 1875092409}
   m_Father: {fileID: 530495170}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1539,7 +1620,7 @@ RectTransform:
   m_Children:
   - {fileID: 427435784}
   m_Father: {fileID: 530495170}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1671,7 +1752,7 @@ Transform:
   - {fileID: 1022831287}
   - {fileID: 307543076}
   m_Father: {fileID: 530495170}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1332784209
 MonoBehaviour:
@@ -1861,7 +1942,7 @@ RectTransform:
   - {fileID: 1673704530}
   - {fileID: 2096130394}
   m_Father: {fileID: 530495170}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2407,6 +2488,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanRoll: 1
+  EnemyCanRoll: 0
   state: 0
   MeleeAttackButton: {fileID: 1300105747}
   FireballAttackButton: {fileID: 765080848}

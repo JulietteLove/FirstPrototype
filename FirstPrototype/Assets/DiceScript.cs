@@ -6,11 +6,15 @@ using UnityEngine.UI;
 public class DiceScript : MonoBehaviour
 {
     public float NumberRolled;
+    public float EnemyNumberRolled;
     public bool ButtonPressed = false;
     public GameObject DiceText;
+    public GameObject EnemyDiceText;
     public Text ConsoleText;
 
-    public void ButtonClicked()
+    public Image playerHealth;
+
+    public void ButtonClicked() //CODE DEALING WITH PLAYER ROLL
     {
         ButtonPressed = true;
 
@@ -22,17 +26,15 @@ public class DiceScript : MonoBehaviour
             DiceText.GetComponent<UnityEngine.UI.Text>().text = NumberRolled.ToString("F0");
             ButtonPressed = false;
             
-            
-
             Enemy enemy = GameObject.FindWithTag("Enemy").GetComponent<Enemy>();
 
             if (enemy.defenceNumber >= NumberRolled) //Enemy defends itself.
             {
                 ConsoleText.text = "Miss";
-                Invoke("EnemyTurn", 3.0f);
+                Invoke("EnemyTurn", 2f);
             }
             
-            if (enemy.defenceNumber < NumberRolled)
+            if (enemy.defenceNumber < NumberRolled) //Option to deal damage to enemy. ATtack buttons appear. 
             {
                 combatSystem.state = CombatState.PLAYERCOMBAT;
                 ConsoleText.text = "Your turn";
@@ -46,6 +48,7 @@ public class DiceScript : MonoBehaviour
     {
         CombatSystem combatSystem = GameObject.FindWithTag("CombatSystem").GetComponent<CombatSystem>();
         combatSystem.state = CombatState.ENEMYTURN;
+        combatSystem.EnemyCanRoll = true;
         ConsoleText.text = "Enemy Turn";
     }
 }

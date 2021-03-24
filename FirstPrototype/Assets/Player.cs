@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     public string playerName;
     public int attackPower;
     public int defenceNumber;
-    public int currentHealth;
+    public float currentHealth = 1;
     public int maxHealth;
 
     void Start()

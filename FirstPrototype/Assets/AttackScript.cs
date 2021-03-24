@@ -11,6 +11,8 @@ public class AttackScript : MonoBehaviour
     public Image enemyHealth;
     public Text ConsoleText;
 
+    //CODE DEALING WITH PLAYER COMBAT STAGE
+
     public void FireballButton()
     {
         Enemy enemy = GameObject.FindWithTag("Enemy").GetComponent<Enemy>();
@@ -21,6 +23,7 @@ public class AttackScript : MonoBehaviour
 
         combatSystem.state = CombatState.ENEMYTURN;
         ConsoleText.text = "Enemy Turn";
+        combatSystem.EnemyCanRoll = true;
     }
 
     public void MeleeButton()
@@ -33,5 +36,6 @@ public class AttackScript : MonoBehaviour
 
         combatSystem.state = CombatState.ENEMYTURN;
         ConsoleText.text = "Enemy Turn";
+        combatSystem.EnemyCanRoll = true;
     }
 }
