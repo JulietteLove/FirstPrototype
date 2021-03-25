@@ -15,6 +15,9 @@ public class DiceScript : MonoBehaviour
 
     public Image playerHealth;
 
+    public GameObject playerMissExplanation;
+    public bool FirstTimePlayerMiss = true;
+
     public void ButtonClicked() //CODE DEALING WITH PLAYER ROLL
     {
         ButtonPressed = true;
@@ -33,6 +36,14 @@ public class DiceScript : MonoBehaviour
             {
                 ConsoleText.text = "Miss";
                 Invoke("EnemyTurn", 2f);
+
+                if (FirstTimePlayerMiss == true)
+                {
+                    playerMissExplanation.SetActive(true);
+                    Invoke("MissTextDisappear", 3f);
+                    FirstTimePlayerMiss = false;
+                }
+                
 
                 AttackScript attackScript = GameObject.FindWithTag("CombatSystem").GetComponent<AttackScript>();
                 attackScript.PlayerCanAttack = true;
@@ -62,5 +73,10 @@ public class DiceScript : MonoBehaviour
     public void Replay() //Replay scene button
     {
         SceneManager.LoadScene("SampleScene");
+    }
+
+    void MissTextDisappear()
+    {
+        playerMissExplanation.SetActive(false);
     }
 }

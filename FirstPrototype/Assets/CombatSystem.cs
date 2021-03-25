@@ -16,6 +16,8 @@ public class CombatSystem : MonoBehaviour
     public GameObject MeleeAttackButton;
     public GameObject FireballAttackButton;
 
+    public GameObject enemyMissExplanation;
+    public bool FirstTimeEnemyMiss = true;
     void Start()
     {
         state = CombatState.PLAYERROLL;
@@ -51,17 +53,10 @@ public class CombatSystem : MonoBehaviour
             Invoke("EnemyRoll", 2f);
         }
 
-        //if (diceScript.playerHealth.fillAmount == 0f) //Player Loses
-        //{
-        //    Debug.Log("Has Lost");
-        //    LoseUI.SetActive(true);
-        //}
-
-        //if (attackScript.enemyHealth.fillAmount == 0f) //Player Wins
-        //{
-        //    Debug.Log("Has Won");
-        //    WinUI.SetActive(true);
-        //}
+        if (Input.GetKey("escape"))
+        {
+            Application.Quit();
+        }
     }
 
 
@@ -81,6 +76,14 @@ public class CombatSystem : MonoBehaviour
                 diceScript.ConsoleText.text = "Enemy misses";
                 Invoke("PlayerTurn", 2f);
                 Debug.Log("Enemy has missed");
+
+                if(FirstTimeEnemyMiss == true)
+                {
+                    enemyMissExplanation.SetActive(true);
+                    Invoke("MissTextDisappear", 3f);
+                    FirstTimeEnemyMiss = false;
+                }
+
             }
 
             if (player.defenceNumber < diceScript.EnemyNumberRolled) //Deals damage to player.
@@ -112,5 +115,10 @@ public class CombatSystem : MonoBehaviour
     void PlayerRollDice()
     {
         CanRoll = true;
+    }
+
+    void MissTextDisappear()
+    {
+        enemyMissExplanation.SetActive(false);
     }
 }
